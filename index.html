@@ -24,26 +24,35 @@ body {
   font-family: 'Nunito', sans-serif;
   background: linear-gradient(155deg, #0e0820 0%, #1e0d38 45%, #0e0a1a 100%);
   color: var(--text);
-  min-height: 100vh; display: flex; flex-direction: column;
+  height: var(--tg-viewport-height, 100dvh);
+  max-height: var(--tg-viewport-height, 100dvh);
+  display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  padding: 1.5rem 1rem; gap: 1.25rem; overflow-x: hidden;
+  padding: clamp(0.4rem, 2vh, 1.5rem) 1rem;
+  gap: clamp(0.35rem, 1.6vh, 1.25rem);
+  overflow: hidden;
 }
-h1 { font-size: 22px; font-weight: 700; text-align: center; letter-spacing: 0.05em; color: #f0c8f8; }
-.sub { font-size: 13px; color: var(--muted); text-align: center; margin-top: 4px; }
+h1 { font-size: clamp(16px, 3.5vh, 22px); font-weight: 700; text-align: center; letter-spacing: 0.05em; color: #f0c8f8; }
+.sub { font-size: clamp(11px, 1.8vh, 13px); color: var(--muted); text-align: center; margin-top: 2px; }
 .rarities { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
-.rpill { font-size: 10px; padding: 2px 9px; border-radius: 99px; font-weight: 700; }
+.rpill { font-size: clamp(9px, 1.5vh, 10px); padding: 2px 8px; border-radius: 99px; font-weight: 700; }
 .rpill.common    { background:#0e2a1e; color:var(--common); border:1px solid var(--common); }
 .rpill.rare      { background:#0a1a38; color:var(--rare); border:1px solid var(--rare); }
 .rpill.epic      { background:#240a44; color:var(--epic); border:1px solid var(--epic); }
 .rpill.legendary { background:#2e1800; color:var(--legendary); border:1px solid var(--legendary); }
 .rpill.mythic    { background:#2a0828; color:var(--mythic); border:1px solid var(--mythic); }
 .card-area {
-  width:280px; height:340px; position:relative; display:flex;
+  width: min(280px, 88vw);
+  height: min(300px, 42vh);
+  position:relative; display:flex;
   align-items:center; justify-content:center;
   perspective: 1000px;
+  flex-shrink: 0;
 }
 .card-back {
-  width:260px; height:320px; border-radius:20px;
+  width: min(260px, 84vw);
+  height: min(280px, 40vh);
+  border-radius:20px;
   background: linear-gradient(145deg, #240f40, #180830);
   border:1px solid #7a3aaa;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
@@ -62,7 +71,9 @@ h1 { font-size: 22px; font-weight: 700; text-align: center; letter-spacing: 0.05
   100% { transform: rotateY(-90deg) scale(0.85); opacity:0; }
 }
 .card {
-  width:260px; height:320px; border-radius:20px;
+  width: min(260px, 84vw);
+  height: min(280px, 40vh);
+  border-radius:20px;
   background: linear-gradient(145deg, #240f40, #180830);
   border:1px solid var(--card-border);
   display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -79,17 +90,17 @@ h1 { font-size: 22px; font-weight: 700; text-align: center; letter-spacing: 0.05
 .card.legendary-card { background: linear-gradient(145deg,#2a1800,#1e1030); border:1.5px solid var(--legendary); box-shadow:0 0 20px 3px #ffcc4430; }
 .card.epic-card  { background: linear-gradient(145deg,#280a48,#1a0830); border:1.5px solid var(--epic); box-shadow:0 0 16px 2px #cc44ff22; }
 .card.rare-card  { background: linear-gradient(145deg,#0e1a3a,#180830); border:1.5px solid var(--rare); }
-.creature-circle { width:110px; height:110px; border-radius:50%; background:#2a1248; border:1px solid #7a3aaa; display:flex; align-items:center; justify-content:center; font-size:60px; flex-shrink:0; }
+.creature-circle { width:min(100px,22vh); height:min(100px,22vh); border-radius:50%; background:#2a1248; border:1px solid #7a3aaa; display:flex; align-items:center; justify-content:center; font-size:min(54px,12vh); flex-shrink:0; }
 .mythic-card .creature-circle    { background:#350048; border-color:var(--mythic); box-shadow:0 0 20px #ff44cc88; filter:drop-shadow(0 0 10px #ff70cc); }
 .legendary-card .creature-circle { border-color:var(--legendary); background:#2a1800; }
 .epic-card .creature-circle      { border-color:var(--epic); background:#280a40; }
 .rare-card .creature-circle      { border-color:var(--rare); background:#0a1430; }
-.name { font-size:17px; font-weight:700; color:var(--text); text-align:center; }
+.name { font-size:clamp(13px,3.2vh,17px); font-weight:700; color:var(--text); text-align:center; }
 .mythic-card .name    { color:#ffaaee; text-shadow:0 0 10px #ff44cc, 0 0 24px #cc00aa; }
 .legendary-card .name { color:var(--legendary); }
 .epic-card .name      { color:#e8b8ff; }
 .rare-card .name      { color:#b8d8ff; }
-.desc { font-size:12px; color:var(--muted); text-align:center; line-height:1.6; }
+.desc { font-size:clamp(10px,2.2vh,12px); color:var(--muted); text-align:center; line-height:1.5; }
 .mythic-card .desc    { color:#f0aaff; }
 .legendary-card .desc { color:#ffd890; }
 .epic-card .desc      { color:#d4aaff; }
@@ -99,7 +110,7 @@ h1 { font-size: 22px; font-weight: 700; text-align: center; letter-spacing: 0.05
 .badge.epic      { background:#240a44; color:var(--epic); border:1px solid var(--epic); }
 .badge.legendary { background:#2e1800; color:var(--legendary); border:1px solid var(--legendary); }
 .badge.mythic    { background:#2a0828; color:var(--mythic); border:1px solid var(--mythic); text-shadow:0 0 8px #ff44cc; box-shadow:0 0 10px #ff44cc33; }
-.btn { padding:12px 30px; border-radius:12px; border:1px solid #7a3aaa; background:#240f40; color:var(--text); font-size:14px; font-weight:600; cursor:pointer; font-family:'Nunito',sans-serif; transition:all 0.15s; }
+.btn { padding:clamp(8px,1.8vh,12px) 28px; border-radius:12px; border:1px solid #7a3aaa; background:#240f40; color:var(--text); font-size:14px; font-weight:600; cursor:pointer; font-family:'Nunito',sans-serif; transition:all 0.15s; }
 .btn:hover { background:#341460; border-color:#cc66ff; box-shadow:0 0 12px #cc44ff33; }
 .btn:active { transform:scale(0.97); }
 .hint { font-size:12px; color:var(--muted); text-align:center; }
@@ -152,6 +163,8 @@ body.shaking { animation: screenShake 0.55s ease-in-out; }
 <p class="hint" id="hintText">100 мистических существ · 5 уровней силы</p>
 <p class="counter" id="counter"></p>
 <script>
+if (window.Telegram?.WebApp) { Telegram.WebApp.expand(); }
+
 const adopts=[
   {e:"🐱",n:"Серый Пушин",d:"Уютный дух домашнего очага.\nСпит на всех подоконниках.",r:"common"},
   {e:"🐰",n:"Лунный Зайка",d:"Живёт у подножия луны.\nСобирает лунный свет.",r:"common"},
